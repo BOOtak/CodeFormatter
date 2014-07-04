@@ -40,7 +40,7 @@ public class CodeFormatter {
                         startOfLine = true;
                     }
                 }
-                if (startOfLine) {
+                if (startOfLine && currentChar != ' ') {
                     if (currentChar != '}') {
                         writeString(multiplyString(indentation, braceCount), outStream);
                     } else {
