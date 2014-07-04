@@ -90,7 +90,7 @@ public class CodeFormatter {
                         outStream.writeSymbol(' ');
                     }
                 }
-                if ((currentChar == ' ' && lastChar != ' ' && lastChar != '(') || currentChar != ' ') {
+                if ((currentChar == ' ' && lastChar != ' ' && lastChar != '(' && lastChar != '\n' && !startOfLine) || currentChar != ' ') {
                     outStream.writeSymbol(currentChar);
                 }
                 if (currentChar == '\n') {
