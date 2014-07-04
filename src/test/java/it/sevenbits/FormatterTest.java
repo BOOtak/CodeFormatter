@@ -103,6 +103,25 @@ public class FormatterTest {
         assertEquals("Result must be properly formatted!", result, outStream.getStringData());
     }
 
+    @Test
+    public void testPutSpacesNearoperators() throws Exception {
+        String testString =
+                "public void main(          ) {printf();scanf(a+2);if(a||b){return;}}";
+        String result =
+                "public void main() {\n" +
+                "    printf();\n" +
+                "    scanf(a + 2);\n" +
+                "    if(a || b){\n" +
+                "        return;\n" +
+                "    }\n" +
+                "}\n";
+        InStream inStream = new StringInStream(testString);
+        StringOutStream outStream = new StringOutStream();
+        CodeFormatter formatter = new CodeFormatter();
+        formatter.format(inStream, outStream, "    ");
+        assertEquals("Extra spaces must be reduced!", result, outStream.getStringData());
+    }
+
     @Test(expected = FormatterException.class)
     public void testInvalidBraces() throws FormatterException {
         String testString = "public class Main {{{{{df}}}}sdfsdf";

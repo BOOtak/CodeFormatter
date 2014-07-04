@@ -54,6 +54,34 @@ public class CodeFormatter {
                 if (currentChar == '}') {
                     braceCount--;
                 }
+                if (currentChar == '+' || currentChar == '-' || currentChar == '/' || currentChar == '*') {
+                    if (lastChar != ' ') {
+                        outStream.writeSymbol(' ');
+                    }
+                }
+                if (lastChar == '+' || lastChar == '-' || lastChar == '/' || lastChar == '*') {
+                    if (currentChar != ' ') {
+                        outStream.writeSymbol(' ');
+                    }
+                }
+                if (currentChar == '|') {
+                    if (lastChar != '|' && lastChar != ' ') {
+                        outStream.writeSymbol(' ');
+                    }
+                } else if (currentChar == '&') {
+                    if (lastChar != '&' && lastChar != ' ') {
+                        outStream.writeSymbol(' ');
+                    }
+                }
+                if (lastChar == '|') {
+                    if (currentChar != '|' && currentChar != ' ') {
+                        outStream.writeSymbol(' ');
+                    }
+                } else if (lastChar == '&') {
+                    if (currentChar != '&' && currentChar != ' ') {
+                        outStream.writeSymbol(' ');
+                    }
+                }
                 if ((currentChar == ' ' && lastChar != ' ' && lastChar != '(') || currentChar != ' ') {
                     outStream.writeSymbol(currentChar);
                 }
