@@ -55,12 +55,20 @@ public class CodeFormatter {
                     braceCount--;
                 }
                 if (currentChar == '+' || currentChar == '-' || currentChar == '/' || currentChar == '*') {
-                    if (lastChar != ' ') {
+                    if (currentChar == '*') {
+                        if (lastChar != '.') {
+                            outStream.writeSymbol(' ');
+                        }
+                    } else if (lastChar != ' ') {
                         outStream.writeSymbol(' ');
                     }
                 }
                 if (lastChar == '+' || lastChar == '-' || lastChar == '/' || lastChar == '*') {
-                    if (currentChar != ' ') {
+                    if (lastChar == '*') {
+                        if (currentChar != ';') {
+                            outStream.writeSymbol(' ');
+                        }
+                    } else if (currentChar != ' ') {
                         outStream.writeSymbol(' ');
                     }
                 }
